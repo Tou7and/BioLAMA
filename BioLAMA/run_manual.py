@@ -107,7 +107,7 @@ def main():
 
         # saving log
         with open(os.path.join(args.output_dir, pid + ".json"), 'w') as f:
-            json.dump(result, f)
+            json.dump(result, f, indent=4)
 
         if len(result['result']) == 0:
             print("nothing to print")
@@ -142,6 +142,10 @@ def main():
         
     print("-------------------------")
     print(f"MACRO\t{round(np.mean(acc1s),2)}\t{round(np.mean(acc5s),2)}")
+
+    # saving macro results
+    with open(os.path.join(args.output_dir, "macro.txt"), 'w') as writer:
+        writer.write(f"MACRO\t{round(np.mean(acc1s),2)}\t{round(np.mean(acc5s),2)}")
 
 if __name__ == '__main__':
     main()
